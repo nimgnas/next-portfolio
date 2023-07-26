@@ -28,4 +28,4 @@ const Icon = ({ name, width, height, className }: IconProps) => {
 export default Icon;
 
 // IconLoader의 id 값을 타이핑해야합니다.
-export type IconName = "arrow-down" | "next" | "vercel";
+export type IconName = "github" | "javaScript" | "kakaoTalk" | "navigationBar" | "profile" | "send" | "skills";
