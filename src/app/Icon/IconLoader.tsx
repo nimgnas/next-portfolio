@@ -21,8 +21,8 @@ const IconLoader = () => (
           clipRule="evenodd"
         />
       </symbol>
-      <symbol width="25" height="25" fill="none" viewBox="0 0 25 25" id="kakaoTalk">
-        <g fill="#fff" clipPath="url(#a)">
+      <symbol width="25" height="25" viewBox="0 0 25 25" id="kakaoTalk">
+        <g clipPath="url(#a)">
           <path d="m9.853 9.634.718 2.06H9.134l.719-2.06Z" />
           <path
             fillRule="evenodd"
@@ -37,7 +37,7 @@ const IconLoader = () => (
         </defs>
       </symbol>
       <symbol width="6" height="66" fill="none" viewBox="0 0 6 66" id="navigationBar">
-        <path stroke="#fff" strokeLinecap="round" strokeWidth="6" d="M3 3v59.5" />
+        <path strokeLinecap="round" strokeWidth="6" d="M3 3v59.5" />
       </symbol>
       <symbol width="24" height="24" fill="none" viewBox="0 0 24 24" id="profile">
         <path
@@ -47,13 +47,12 @@ const IconLoader = () => (
           clipRule="evenodd"
         />
       </symbol>
-      <symbol width="27" height="27" fill="none" viewBox="0 0 27 27" id="send">
+      <symbol width="27" height="27" viewBox="0 0 27 27" id="send">
         <mask id="a" width="23" height="23" x="2" y="3" maskUnits="userSpaceOnUse" style={{ maskType: "luminance" }}>
           <path fill="#fff" fillRule="evenodd" d="M2.25 3.375h21.936v21.937H2.25V3.375Z" clipRule="evenodd" />
         </mask>
         <g mask="url(#a)">
           <path
-            fill="#fff"
             fillRule="evenodd"
             d="m12.155 16.67 4.115 6.675c.18.292.46.289.575.273a.571.571 0 0 0 .486-.417l5.144-17.376a.587.587 0 0 0-.15-.59.576.576 0 0 0-.575-.15L4.361 10.179a.574.574 0 0 0-.418.487.58.58 0 0 0 .271.586l6.751 4.222 5.965-6.028a.845.845 0 0 1 1.2 1.187l-5.976 6.038Zm4.602 8.642c-.783 0-1.501-.398-1.924-1.082l-4.362-7.077-7.15-4.472a2.255 2.255 0 0 1-1.049-2.246A2.25 2.25 0 0 1 3.887 8.56l17.388-5.092a2.273 2.273 0 0 1 2.817 2.837L18.947 23.68a2.247 2.247 0 0 1-1.879 1.612 2.445 2.445 0 0 1-.311.021Z"
             clipRule="evenodd"
