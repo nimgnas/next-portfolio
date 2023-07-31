@@ -9,8 +9,8 @@ import TechStackIcon from "./svg/TechStackIcon";
 
 export default function Home() {
   return (
-    <div>
-      <main className="w-full h-scree px-24 py-6 flex flex-col justify-between">
+    <div className="flex flex-col w-11/12">
+      <main className="w-full h-screen px-24 py-6 flex flex-col justify-between">
         <header className="text-primaryWhite flex gap-4 text-center">
           <span className=" text-xl font-medium">GitHub</span>
           <span>|</span>
