@@ -9,7 +9,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html>
       <body className="bg-primaryGreen flex">
         <IconLoader />
-        <nav className=" h-screen w-28 bg-darkGreen">
+        <nav className="h-screen w-1/12 bg-darkGreen sticky top-0">
           <ul className="h-full text-primaryWhite flex flex-col items-center justify-center gap-16">
             <NavList
               whiteLineIcon={

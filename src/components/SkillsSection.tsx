@@ -36,7 +36,7 @@ export default function SkillsSection({ children }: SkillsSectionProps) {
   }, []);
 
   return (
-    <section ref={sectionElementRef} className={`h-[90%] flex justify-${justifyContent} items-center gap-20`}>
+    <section ref={sectionElementRef} className={`h-[90%]  flex justify-${justifyContent} items-center gap-20`}>
       {children}
     </section>
   );
