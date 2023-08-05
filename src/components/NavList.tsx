@@ -1,32 +1,33 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useScroll, useMotionValueEvent, useMotionValue } from "framer-motion";
 
 interface NavList {
   whiteLineIcon: React.ReactNode;
   greenLineIcon: React.ReactNode;
 }
-const pathList = ["/", "/skill", "/project"];
+
+const SCROLL_LOCATION = [
+  [0, 0.5],
+  [0.5, 0.95],
+  [0.95, 1],
+];
 
 export default function NavList({ whiteLineIcon, greenLineIcon }: NavList) {
-  const [currentPath, setCurrentPath] = useState("/");
+  const { scrollYProgress } = useScroll();
+  const [yProgress, setYProgress] = useState(0);
 
-  useEffect(() => {
-    setCurrentPath(window.location.pathname);
-  }, []);
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    console.log(latest);
+    setYProgress(latest);
+  });
 
   return (
     <>
-      {pathList.map((path, i) => (
-        <li key={i}>
-          <Link onClick={() => setCurrentPath(path)} href={path}>
-            {currentPath === path ? greenLineIcon : whiteLineIcon}
-          </Link>
-        </li>
+      {SCROLL_LOCATION.map((location, i) => (
+        <li key={i}>{yProgress >= location[0] && yProgress <= location[1] ? greenLineIcon : whiteLineIcon}</li>
       ))}
     </>
   );
 }
-
-// TODO: 주소창에 직접 입력했을때 currentPath 변경
