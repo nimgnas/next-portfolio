@@ -9,8 +9,8 @@ import TechStackIcon from "./svg/TechStackIcon";
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-11/12">
-      <main className="w-full h-screen px-24 py-6 flex flex-col justify-between">
+    <div className="flex flex-col w-11/12 h-screen snap-y overflow-y-scroll snap-mandatory">
+      <main className="w-full min-h-screen px-24 py-6 flex flex-col justify-between snap-start">
         <header className="text-primaryWhite flex gap-4 text-center">
           <span className=" text-xl font-medium">GitHub</span>
           <span>|</span>
@@ -54,7 +54,8 @@ export default function Home() {
           </div>
         </footer>
       </main>
-      <main className="h-screen w-full pl-24 py-6 overflow-hidden">
+
+      <main className="min-h-screen w-full pl-24 py-6 overflow-hidden snap-start">
         <h1 className="flex justify-center text-5xl text-primaryWhite font-bold">SKILLS</h1>
         <SkillsSection>
           {Array.from({ length: 5 }, () => 0).map((_, i) => (
@@ -69,7 +70,8 @@ export default function Home() {
           ))}
         </SkillsSection>
       </main>
-      <main className="h-screen w-full pl-24 py-6 flex flex-col items-center gap-16">
+
+      <main className="min-h-screen w-full pl-24 py-6 flex flex-col items-center gap-16 snap-start">
         <h1 className="flex justify-center text-5xl text-primaryWhite font-bold">PROJECTS</h1>
         <div className="w-[67rem] h-[40rem] bg-darkGreen py-4 px-10 rounded-md">
           <h2 className="flex justify-center text-4xl text-primaryWhite font-bold">모아</h2>
