@@ -1,32 +1,48 @@
 "use client";
 
-import { useState } from "react";
-import { useScroll, useMotionValueEvent, useMotionValue } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 
 interface NavList {
   whiteLineIcon: React.ReactNode;
   greenLineIcon: React.ReactNode;
 }
 
-const SCROLL_LOCATION = [
-  [0, 0.5],
-  [0.5, 0.95],
-  [0.95, 1],
-];
-
 export default function NavList({ whiteLineIcon, greenLineIcon }: NavList) {
-  const { scrollYProgress } = useScroll();
   const [yProgress, setYProgress] = useState(0);
+  const [scrollLocation, setScrollLocation] = useState([true, false, false]);
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log(latest);
-    setYProgress(latest);
-  });
+  const listElementRef = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    const bodyElement = listElementRef.current?.parentElement?.parentElement?.parentElement;
+    const mainElement = bodyElement?.querySelector("main")!;
+    const sectionElementList = mainElement?.querySelectorAll("main > section");
+
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      for (let i = 0; i < entries.length; i++) {
+        const entry = entries[i];
+        if (entry.target.id === "profile" && entry.isIntersecting) setScrollLocation([true, false, false]);
+        if (entry.target.id === "skill" && entry.isIntersecting) setScrollLocation([false, true, false]);
+        if (entry.target.id === "project" && entry.isIntersecting) setScrollLocation([false, false, true]);
+      }
+    };
+
+    const observer = new IntersectionObserver(observerCallback, { threshold: 0.5 });
+
+    sectionElementList.forEach((sectionElement) => observer.observe(sectionElement));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <>
-      {SCROLL_LOCATION.map((location, i) => (
-        <li key={i}>{yProgress >= location[0] && yProgress <= location[1] ? greenLineIcon : whiteLineIcon}</li>
+      {scrollLocation.map((location, i) => (
+        <li ref={listElementRef} key={i}>
+          {location ? greenLineIcon : whiteLineIcon}
+        </li>
       ))}
     </>
   );
