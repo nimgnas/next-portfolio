@@ -1,32 +1,47 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface NavList {
   whiteLineIcon: React.ReactNode;
   greenLineIcon: React.ReactNode;
 }
-const pathList = ["/", "/skill", "/project"];
 
 export default function NavList({ whiteLineIcon, greenLineIcon }: NavList) {
-  const [currentPath, setCurrentPath] = useState("/");
+  const [scrollLocation, setScrollLocation] = useState([true, false, false]);
+
+  const listElementRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
-    setCurrentPath(window.location.pathname);
+    const bodyElement = listElementRef.current?.parentElement?.parentElement?.parentElement;
+    const mainElement = bodyElement?.querySelector("main")!;
+    const sectionElementList = mainElement?.querySelectorAll("main > section");
+
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      for (let i = 0; i < entries.length; i++) {
+        const entry = entries[i];
+        if (entry.target.id === "profile" && entry.isIntersecting) setScrollLocation([true, false, false]);
+        if (entry.target.id === "skill" && entry.isIntersecting) setScrollLocation([false, true, false]);
+        if (entry.target.id === "project" && entry.isIntersecting) setScrollLocation([false, false, true]);
+      }
+    };
+
+    const observer = new IntersectionObserver(observerCallback, { threshold: 0.5 });
+
+    sectionElementList.forEach((sectionElement) => observer.observe(sectionElement));
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   return (
     <>
-      {pathList.map((path, i) => (
-        <li key={i}>
-          <Link onClick={() => setCurrentPath(path)} href={path}>
-            {currentPath === path ? greenLineIcon : whiteLineIcon}
-          </Link>
+      {scrollLocation.map((location, i) => (
+        <li ref={listElementRef} key={i}>
+          {location ? greenLineIcon : whiteLineIcon}
         </li>
       ))}
     </>
   );
 }
-
-// TODO: 주소창에 직접 입력했을때 currentPath 변경
