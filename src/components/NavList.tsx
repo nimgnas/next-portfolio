@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useScroll, useMotionValueEvent } from "framer-motion";
 
 interface NavList {
   whiteLineIcon: React.ReactNode;
@@ -9,7 +8,6 @@ interface NavList {
 }
 
 export default function NavList({ whiteLineIcon, greenLineIcon }: NavList) {
-  const [yProgress, setYProgress] = useState(0);
   const [scrollLocation, setScrollLocation] = useState([true, false, false]);
 
   const listElementRef = useRef<HTMLLIElement>(null);
