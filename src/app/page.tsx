@@ -1,11 +1,5 @@
 import SkillsSection from "@/components/SkillsSection";
 import Icon from "./Icon/Icon";
-import IconLoader from "./Icon/IconLoader";
-import GithubIcon from "./svg/GithubIcon";
-import KakaoIcon from "./svg/KakaoIcon";
-import ProfileIcon from "./svg/ProfileIcon";
-import SendIcon from "./svg/SendIcon";
-import TechStackIcon from "./svg/TechStackIcon";
 
 export default function Home() {
   return (
